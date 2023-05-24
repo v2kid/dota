@@ -1,4 +1,3 @@
-import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query'
 import classNames from 'classnames'
 import { useAddPostMutation, useGetPostQuery, useUpdatePostMutation } from '../../blog.service'
 import { Fragment, useEffect, useMemo, useState } from 'react'
@@ -8,7 +7,6 @@ import { Post } from 'types/blog.type'
 import { isEntityError, isFetchBaseQueryError } from 'utils/helpers'
 
 const initialState: Omit<Post, '_id'> = {
-  // _id: '',
   description: '',
   featuredImage: '',
   publishDate: '',
@@ -27,20 +25,30 @@ type FormError =
   | null
 
 export default function CreatePost() {
-  const [formData, setFormData] = useState(initialState)
+  const [formData, setFormData] = useState<Omit<Post, '_id'> | Post>(initialState)
   const [addPost, addPostResult] = useAddPostMutation()
   const postId = useSelector((state: RootState) => state.blog.postId)
   const { data, refetch } = useGetPostQuery(postId, {
     skip: !postId,
-    refetchOnMountOrArgChange: 5,
-    pollingInterval: 1000
+
   })
   const [updatePost, updatePostResult] = useUpdatePostMutation()
 
+  /**
+   * Lỗi có thể đến từ `addPostResult` hoặc `updatePostResult`
+   * Vậy chúng ta sẽ dựa vào điều kiện có postId hoặc không có (tức đang trong chế độ edit hay không) để show lỗi
+   *
+   * Chúng ta cũng không cần thiết phải tạo một state errorForm
+   * Vì errorForm phụ thuộc vào `addPostResult`, `updatePostResult` và `postId` nên có thể dùng một biến để tính toán
+   */
+
   const errorForm: FormError = useMemo(() => {
     const errorResult = postId ? updatePostResult.error : addPostResult.error
-
+    // Vì errorResult có thể là FetchBaseQueryError | SerializedError | undefined, mỗi kiểu lại có cấu trúc khác nhau
+    // nên chúng ta cần kiểm tra để hiển thị cho đúng
     if (isEntityError(errorResult)) {
+      // Có thể ép kiểu một cách an toàn chỗ này, vì chúng ta đã kiểm tra chắc chắn rồi
+      // Nếu không muốn ép kiểu thì có thể khai báo cái interface `EntityError` sao cho data.error tương đồng với FormError là được
       return errorResult.data.error as FormError
     }
     return null
@@ -161,7 +169,7 @@ export default function CreatePost() {
           type='checkbox'
           className='h-4 w-4 focus:ring-2 focus:ring-blue-500'
           checked={formData.published}
-          onChange={(event) => setFormData((prev: any) => ({ ...prev, published: event.target.checked }))}
+          onChange={(event) => setFormData((prev) => ({ ...prev, published: event.target.checked }))}
         />
         <label htmlFor='publish' className='ml-2 text-sm font-medium text-gray-900'>
           Publish

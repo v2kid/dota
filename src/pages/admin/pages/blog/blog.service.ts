@@ -2,6 +2,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { Post } from 'types/blog.type'
 import { CustomError } from 'utils/helpers'
 
+
+
 export const blogApi = createApi({
   reducerPath: 'blogApi', // Tên field trong Redux state
   tagTypes: ['Posts'], // Những kiểu tag cho phép dùng trong blogApi
@@ -9,7 +11,8 @@ export const blogApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:3001/',
     prepareHeaders(headers) {
-      headers.set('authorization', 'Bearer ABCXYZ')
+      const token = localStorage.getItem('token')
+      headers.set('authorization', `Bearer ${token}`)
       return headers
     }
   }),
@@ -17,12 +20,13 @@ export const blogApi = createApi({
     // Generic type theo thứ tự là kiểu response trả về và argument
     getPosts: build.query<Post[], void>({
       query: () => 'blog/posts', // method không có argument
-
+    
       providesTags(result) {
         if (result) {
           const final = [
-            ...result.map(({ _id }) => ({ type: 'Posts' as const })),
-            { type: 'Posts' as const, id: 'LIST' }
+            ...result.map(({ _id}) => ({ type: 'Posts' as const,  })),
+            { type: 'Posts' as const, id: 'LIST' },
+   
           ]
           return final
         }
@@ -30,8 +34,8 @@ export const blogApi = createApi({
         return [{ type: 'Posts', id: 'LIST' }]
       }
     }),
-
-    addPost: build.mutation<string, Omit<Post, '_id'>>({
+  
+    addPost: build.mutation<Post, Omit<Post, '_id'>>({
       query(body) {
         try {
           return {
@@ -43,34 +47,39 @@ export const blogApi = createApi({
           throw new CustomError(error.message)
         }
       },
-
+     
       invalidatesTags: (result, error, body) => (error ? [] : [{ type: 'Posts', id: 'LIST' }])
     }),
-    getPost: build.query<Post, string>({
-      query: (id) => ({
-        url: `posts/${id}`
-      })
-    }),
+    
     updatePost: build.mutation<Post, { id: string; body: Post }>({
       query(data) {
         return {
-          url: `posts/${data.id}`,
+          url: `blog/${data.id}`,
           method: 'PUT',
           body: data.body
         }
       },
-      invalidatesTags: (result, error, data) => (error ? [] : [{ type: 'Posts', id: data.id }])
+      
+      // Trong trường hợp này thì getPosts sẽ chạy lại
+      invalidatesTags: (result, error, data) => 
+       (error ? [] : [{ type: 'Posts', id : 'A'}])
     }),
     deletePost: build.mutation<{}, string>({
-      query(_id) {
+      query(id) {
         return {
-          url: `blog/${_id}`,
-          method: 'DELETE'
+          url: `blog/${id}`,
+          method: 'DELETE',
         }
       },
-      invalidatesTags: (result, error, id) => [{ type: 'Posts', id: 'LIST' }]
-    })
+      invalidatesTags: (result, error, id) => [{ type: 'Posts', id: 'D' }]
+    }),
+    getPost: build.query<Post, string>({
+      query: (id) => ({
+        url: `blog/?id=${id}`,
+      })
+    }),
   })
+  
 })
 
 export const { useGetPostsQuery, useAddPostMutation, useGetPostQuery, useUpdatePostMutation, useDeletePostMutation } =
