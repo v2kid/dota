@@ -1,18 +1,23 @@
 import React, { useState } from 'react'
-import { useSignInMutation } from './login.service'
+import { useGsigninQuery, useSignInMutation } from './login.service'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setToken } from './login.slice'
+import Loginbutton from 'pages/components/Login'
+import GoogleLogin from 'react-google-login'
+import GoogleLoginButton from 'pages/components/Google'
 const initialState = {
   email: '',
   password: ''
 }
+
 export default function Login() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [signIn, signInresult] = useSignInMutation()
+
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
     try {
@@ -23,8 +28,16 @@ export default function Login() {
       console.error('rejected', error)
     }
   }
+  
+  const handleGoogleSuccess = () => {
+   
+  };
 
+  const handleGoogleFailure = () => {
+    // Handle Google login failure.
+  };
   return (
+    
     <div className='bg-white dark:bg-gray-900'>
       <div className='flex h-screen justify-center'>
         <div
@@ -41,6 +54,7 @@ export default function Login() {
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. In autem ipsa, nulla laboriosam dolores,
                 repellendus perferendis libero suscipit nam temporibus molestiae
               </p>
+           
             </div>
           </div>
         </div>
@@ -49,6 +63,7 @@ export default function Login() {
             <div className='text-center'>
               <h2 className='text-center text-4xl font-bold text-gray-700 dark:text-white'>Brand</h2>
               <p className='mt-3 text-gray-500 dark:text-gray-300'>Sign in to access your account</p>
+             
             </div>
             <div className='mt-8'>
               <form onSubmit={handleSubmit}>
@@ -94,6 +109,14 @@ export default function Login() {
                     Sign in
                   </button>
                 </div>
+                <p className='mt-3 text-gray-500 dark:text-gray-300'> 
+                <div className="px-6 sm:px-0 max-w-sm">
+                  <GoogleLoginButton
+                  onSuccess={handleGoogleSuccess}
+                  onFailure={handleGoogleFailure}
+                  />
+                </div>
+                 </p> 
               </form>
               <p className='mt-6 text-center text-sm text-gray-400'>
                 Don't have an account yet?{' '}

@@ -18,21 +18,25 @@ export const blogApi = createApi({
   }),
   endpoints: (build) => ({
     // Generic type theo thứ tự là kiểu response trả về và argument
-    getPosts: build.query<Post[], void>({
-      query: () => 'blog/posts', // method không có argument
+    getPosts: build.query<Post[], void | number>({
+      query: (variables) => {
+        const page = typeof variables === 'number' ? variables : 1;
+        const per_page = typeof variables === 'number' ? variables : 4;
+        return `blog/posts?page=${page}&per_page=4`;
+      },
+      providesTags(result, error, variables) {
+        const page = typeof variables === 'number' ? variables : 1;
+        const per_page = typeof variables === 'number' ? variables : 4;
     
-      providesTags(result) {
         if (result) {
           const final = [
-            ...result.map(({ _id}) => ({ type: 'Posts' as const,  })),
-            { type: 'Posts' as const, id: 'LIST' },
-   
-          ]
-          return final
+            ...result.map(({ _id }) => ({ type: 'Posts' as const })),
+            { type: 'Posts' as const, id: 'LIST', page,per_page },
+          ];
+          return final;
         }
-
-        return [{ type: 'Posts', id: 'LIST' }]
-      }
+        return [{ type: 'Posts', id: 'LIST', page ,per_page}];
+      },
     }),
   
     addPost: build.mutation<Post, Omit<Post, '_id'>>({
@@ -48,7 +52,7 @@ export const blogApi = createApi({
         }
       },
      
-      invalidatesTags: (result, error, body) => (error ? [] : [{ type: 'Posts', id: 'LIST' }])
+      invalidatesTags: (_result, error, _body) => (error ? [] : [{ type: 'Posts', id: 'LIST' }])
     }),
     
     updatePost: build.mutation<Post, { id: string; body: Post }>({
@@ -61,8 +65,7 @@ export const blogApi = createApi({
       },
       
       // Trong trường hợp này thì getPosts sẽ chạy lại
-      invalidatesTags: (result, error, data) => 
-       (error ? [] : [{ type: 'Posts', id : 'A'}])
+      invalidatesTags: (_result, error, _data) => (error ? [] : [{ type: 'Posts', id : 'LIST'}])
     }),
     deletePost: build.mutation<{}, string>({
       query(id) {
@@ -71,7 +74,7 @@ export const blogApi = createApi({
           method: 'DELETE',
         }
       },
-      invalidatesTags: (result, error, id) => [{ type: 'Posts', id: 'D' }]
+      invalidatesTags: (_result, _error, _id) => [{ type: 'Posts', id: 'LIST' }]
     }),
     getPost: build.query<Post, string>({
       query: (id) => ({

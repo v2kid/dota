@@ -1,16 +1,33 @@
+import { useGetPostQuery } from 'pages/admin/pages/blog/blog.service'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from 'store'
 import { Post } from 'types/blog.type'
 
 interface PostItemProps {
   post: Post
-  startEdit: (id: string) => void
+  detailPost: (id: string) => void
   handleDeletePost: (id: string) => void
 }
 
 export default function PostItem(props: PostItemProps) {
-  const { post } = props
+  const { post ,detailPost } = props
+  const postId = useSelector((state : RootState) =>state.blog.postId)
+  const { data, refetch } = useGetPostQuery(postId, {
+      skip: !postId,
+    })
+  // const [postId , setPostid] = useState('')
+  // const { data, refetch } = useGetPostQuery(postId, {
+  //   skip: !postId,
+
+  // })
+  // const  detailpost =(id: string) =>{
+  //   setPostid(id)
+  // }
   return (
+   
     <div className='flex flex-col items-center overflow-hidden rounded-lg border md:flex-row'>
-      <div className='group relative block h-48 w-full shrink-0 self-start overflow-hidden bg-gray-100 md:h-full md:w-32 lg:w-48'>
+      <div className='group relative block h-64 w-full shrink-0 self-start overflow-hidden bg-gray-100 md:h-full md:w-32 lg:w-64'>
         <img
           src={post.featuredImage}
           loading='lazy'
@@ -24,6 +41,13 @@ export default function PostItem(props: PostItemProps) {
         <p className='text-gray-500'>{post.description}</p>
         <div>
           <div className='inline-flex rounded-md shadow-sm' role='group'>
+          <button
+              type='button'
+              className='rounded-l-lg border border-gray-200 bg-white py-2 px-4 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700'
+              onClick={() => detailPost(post._id)}
+            >
+              details
+            </button>
           </div>
         </div>
       </div>

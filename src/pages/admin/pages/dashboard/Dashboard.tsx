@@ -1,5 +1,5 @@
 import DefaultLayout from 'pages/admin/layout/defaultLayout'
-import { useGetUsersQuery } from './dashboard.service'
+import { useGetContactsQuery } from './dashboard.service'
 import { useAppSelector } from 'hook'
 import { useState } from 'react'
 

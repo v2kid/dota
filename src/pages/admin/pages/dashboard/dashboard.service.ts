@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { Contact } from 'types/contact.type'
+import { CustomError } from 'utils/helpers'
 
 export const dashboardApi = createApi({
   reducerPath: 'dashboard', // Tên field trong Redux state
@@ -17,9 +19,22 @@ export const dashboardApi = createApi({
 
   endpoints: (build) => ({
     // Generic type theo thứ tự là kiểu response trả về và argument
-    getUsers: build.query<any, void>({
-      query: () => 'user/list'
-    })
+    getContacts: build.query<Contact[], void>({
+      query: () => 'contacts/lists'
+    }),
+    addMessage: build.mutation<Contact, Omit<Contact, '_id'>>({
+      query(body) {
+        try {
+          return {
+            url: 'contacts',
+            method: 'POST',
+            body
+          }
+        } catch (error: any) {
+          throw new CustomError(error.message)
+        }
+      },
+    }),
   })
 })
 const initialState = {}
@@ -27,10 +42,10 @@ const dashboardSlice = createSlice({
   name: 'dash',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
-    builder.addMatcher(dashboardApi.endpoints.getUsers.matchRejected, (state, action) => {})
-    // ... other extraReducers
-  }
+  // extraReducers: (builder) => {
+  //   builder.addMatcher(dashboardApi.endpoints.getUsers.matchRejected, (state, action) => {})
+  //   // ... other extraReducers
+  // }
 })
 export const {} = dashboardSlice.actions
-export const { useGetUsersQuery } = dashboardApi
+export const { useGetContactsQuery ,useAddMessageMutation} = dashboardApi

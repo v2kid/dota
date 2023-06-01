@@ -30,7 +30,6 @@ export default function CreatePost() {
   const postId = useSelector((state: RootState) => state.blog.postId)
   const { data, refetch } = useGetPostQuery(postId, {
     skip: !postId,
-
   })
   const [updatePost, updatePostResult] = useUpdatePostMutation()
 

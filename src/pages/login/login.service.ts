@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { createSlice } from '@reduxjs/toolkit'
+import { CustomError } from 'utils/helpers'
 export const loginuser = createApi({
   reducerPath: 'loginUser', // Tên field trong Redux state
   tagTypes: ['Posts'], // Những kiểu tag cho phép dùng trong blogApi
@@ -23,7 +24,13 @@ export const loginuser = createApi({
           authorization: localStorage.getItem('token')
         }
       })
-    })
+    }),
+    Gsignin: build.query({
+      query: () => ({
+        url: `auth/google-redirect`,
+      })
+    }),
+
   })
 })
 interface UserState {
@@ -48,5 +55,5 @@ const usersSlice = createSlice({
   }
 })
 const usertokenReducer = usersSlice.reducer
-export const { useSignInMutation } = loginuser
+export const { useSignInMutation , useGsigninQuery} = loginuser
 export default usertokenReducer

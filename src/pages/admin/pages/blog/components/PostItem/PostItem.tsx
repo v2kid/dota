@@ -21,7 +21,7 @@ export default function PostItem(props: PostItemProps) {
       <div className='flex flex-col gap-2 p-4 lg:p-6'>
         <span className='text-sm text-gray-400'>{post.publishDate}</span>
         <h2 className='text-xl font-bold text-gray-800'>{post.title}</h2>
-        <p className='text-gray-500'>{post.description}</p>
+        <p className='text-sm- hover:leading-loose gray-500 '>{post.description}</p>
         <div>
           <div className='inline-flex rounded-md shadow-sm' role='group'>
             <button
