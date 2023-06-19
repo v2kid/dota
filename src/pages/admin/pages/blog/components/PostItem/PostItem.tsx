@@ -10,7 +10,19 @@ export default function PostItem(props: PostItemProps) {
   const { post, startEdit, handleDeletePost } = props
   return (
     <div className='flex flex-col items-center overflow-hidden rounded-lg border md:flex-row'>
-      <div className='group relative block h-48 w-full shrink-0 self-start overflow-hidden bg-gray-100 md:h-full md:w-32 lg:w-48'>
+      <a className="blogcapsule_BlogCapsule_3OBoG"><div className="blogcapsule_Entry_2P4kN" style={{ backgroundImage: `url(${post.featuredImage})` }}>
+    <div className="fade_FadeContainer_1JDI3 fade_Bottom_1NXAh">
+      <div className="fade_Fade_1keus"  />
+    </div>
+    <div className="blogcapsule_Desc_471NM">
+      As seasons go, spring doesn’t have much going for it. It’s wet, there’s too many insects, idiots
+      are all over the place skipping through parks and falling in love.
+    </div>
+    <div className="blogcapsule_Title_39UGs">{post.title}</div>
+    <div className="blogcapsule_Date_3kp_O">J{post.publishDate}</div>     
+  </div>
+  </a>
+      {/* <div className='group relative block h-48 w-full shrink-0 self-start overflow-hidden bg-gray-100 md:h-full md:w-32 lg:w-48'>
         <img
           src={post.featuredImage}
           loading='lazy'
@@ -21,7 +33,7 @@ export default function PostItem(props: PostItemProps) {
       <div className='flex flex-col gap-2 p-4 lg:p-6'>
         <span className='text-sm text-gray-400'>{post.publishDate}</span>
         <h2 className='text-xl font-bold text-gray-800'>{post.title}</h2>
-        <p className='text-sm- hover:leading-loose gray-500 '>{post.description}</p>
+        <p className='text-sm- gray-500 hover:leading-loose '>{post.description}</p> */}
         <div>
           <div className='inline-flex rounded-md shadow-sm' role='group'>
             <button
@@ -40,7 +52,6 @@ export default function PostItem(props: PostItemProps) {
             </button>
           </div>
         </div>
-      </div>
-    </div>
+      </div> 
   )
 }

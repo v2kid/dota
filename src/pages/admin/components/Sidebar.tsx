@@ -152,9 +152,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </svg>
               <span className='mx-2 text-sm font-medium'>Blog</span>
             </NavLink>
-            <NavLink   to='/admin/contacts'  className={`flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 ${
+            <NavLink
+              to='/admin/contacts'
+              className={`flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 ${
                 pathname.includes('calendar') && 'bg-graydark dark:bg-meta-4'
-              }`}>
+              }`}
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -170,9 +173,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 />
               </svg>
               <span className='mx-2 text-sm font-medium'>Messages</span>
-            
             </NavLink>
-            
+
             <a
               className='flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200'
               href='#'

@@ -1,18 +1,17 @@
-import { Navigate } from "react-router-dom";
+import { Navigate } from 'react-router-dom'
 
 export type ProtectedRouteProps = {
-  isAuthenticated: any;
-  authenticationPath: string;
-  outlet: JSX.Element;
-};
+  isAuthenticated: any
+  authenticationPath: string
+  outlet: JSX.Element
+}
 
-const ProtectedRoute = ({isAuthenticated, authenticationPath, outlet}: ProtectedRouteProps) => {
-  if(isAuthenticated) {
-    return outlet;
+const ProtectedRoute = ({ isAuthenticated, authenticationPath, outlet }: ProtectedRouteProps) => {
+  if (isAuthenticated) {
+    return outlet
   } else {
-    return <Navigate to={{ pathname: authenticationPath }} />;
+    return <Navigate to={{ pathname: authenticationPath }} />
   }
-};
+}
 
-
-export default ProtectedRoute;
+export default ProtectedRoute

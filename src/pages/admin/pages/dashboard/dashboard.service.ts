@@ -33,19 +33,19 @@ export const dashboardApi = createApi({
         } catch (error: any) {
           throw new CustomError(error.message)
         }
-      },
-    }),
+      }
+    })
   })
 })
 const initialState = {}
 const dashboardSlice = createSlice({
   name: 'dash',
   initialState,
-  reducers: {},
+  reducers: {}
   // extraReducers: (builder) => {
   //   builder.addMatcher(dashboardApi.endpoints.getUsers.matchRejected, (state, action) => {})
   //   // ... other extraReducers
   // }
 })
 export const {} = dashboardSlice.actions
-export const { useGetContactsQuery ,useAddMessageMutation} = dashboardApi
+export const { useGetContactsQuery, useAddMessageMutation } = dashboardApi

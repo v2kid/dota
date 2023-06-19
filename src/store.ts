@@ -5,15 +5,18 @@ import { dashboardApi } from 'pages/admin/pages/dashboard/dashboard.service'
 import { blogApi } from 'pages/admin/pages/blog/blog.service'
 import blogReducer from 'pages/admin/pages/blog/blog.slice'
 import usertokenReducer, { loginuser } from 'pages/login/login.service'
+import heroReducer, { heroApi } from 'pages/heroes/Heroes.service'
 // ...
 
 export const store = configureStore({
   reducer: {
     blog: blogReducer,
     usertoken: usertokenReducer,
+    heroid: heroReducer,
     [blogApi.reducerPath]: blogApi.reducer, // thêm reducer được tạo từ api slice
     [loginuser.reducerPath]: loginuser.reducer,
-    [dashboardApi.reducerPath]: dashboardApi.reducer
+    [dashboardApi.reducerPath]: dashboardApi.reducer,
+    [heroApi.reducerPath]: heroApi.reducer
   },
   // Thêm api middleware để enable các tính năng như caching, invalidation, polling của rtk-query
   middleware: (getDefaultMiddleware) =>

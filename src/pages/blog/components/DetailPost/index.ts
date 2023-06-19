@@ -1,2 +1,2 @@
-import Detailpost from "./DetailPost";
+import Detailpost from './DetailPost'
 export default Detailpost

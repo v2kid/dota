@@ -22,18 +22,17 @@ const blogSlice = createSlice({
     detailid: (state, action: PayloadAction<string>) => {
       state.postId = action.payload
     },
-    closedetail :(state, action: PayloadAction<string>) => {
+    closedetail: (state, action: PayloadAction<string>) => {
       state.postId = ''
     }
   },
   extraReducers: (builder) => {
-   builder.addMatcher(blogApi.endpoints.updatePost.matchFulfilled,(state,action)=>{
-    state.postId = '';
-   })
-    }
-  
+    builder.addMatcher(blogApi.endpoints.updatePost.matchFulfilled, (state, action) => {
+      state.postId = ''
+    })
+  }
 })
 
 const blogReducer = blogSlice.reducer
-export const { cancelEditPost, startEditPost ,detailid , closedetail} = blogSlice.actions
+export const { cancelEditPost, startEditPost, detailid, closedetail } = blogSlice.actions
 export default blogReducer

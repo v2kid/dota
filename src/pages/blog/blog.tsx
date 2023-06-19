@@ -1,99 +1,57 @@
-import Header from "pages/components";
-import PostList from "./components/PostList";
-import Footer from "pages/components/Footer";
+import Header from 'pages/components'
+import PostList from './components/PostList'
+import Footer from 'pages/components/Footer'
+
+// import '../components/style.css'
+import HomepageSection from 'pages/components/HomepageSection'
+import Related from './components/Related/Related'
 
 export default function Blogshow() {
-    return (
-      <div className="bg-white dark:bg-gray-500">
-           <Header />
-          <div className='p-5'>
-       
-    <div className="max-w-screen-lg mx-auto">
- <Header />
-  {/* header ends here */}
-  <main className="mt-12">
-    {/* featured section */}
-    <div className="flex flex-wrap md:flex-no-wrap space-x-0 md:space-x-6 mb-16">
-      {/* main post */}
-      <div className="mb-4 lg:mb-0  p-4 lg:p-0 w-full md:w-4/7 relative rounded block">
-        <img src="https://images.unsplash.com/photo-1427751840561-9852520f8ce8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60" className="rounded-md object-cover w-full h-64" />
-      
-       
-      </div>
-      <div className="w-full md:w-4/7 mt-5">
-       <PostList />
-      </div>
-    </div>
-    <div className="rounded flex md:shadow mt-12">
-      <img src="https://images.unsplash.com/photo-1579275542618-a1dfed5f54ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60" className="w-0 md:w-1/4 object-cover rounded-l" />
-      <div className="px-4 py-2">
-        <h3 className="text-3xl text-gray-800 font-bold">Subscribe to newsletter</h3>
-        <p className="text-xl text-gray-700">We sent latest news and posts once in every week, fresh from the oven</p>
-        <form className="mt-4 mb-10">
-          <input type="email" className="rounded bg-gray-100 px-4 py-2 border focus:border-green-400" placeholder="john@tech.com" />
-          <button className="px-4 py-2 rounded bg-green-800 text-gray-100">
-            Subscribe
-            <i className="bx bx-right-arrow-alt" />
-          </button>
-          <p className="text-green-900 opacity-50 text-sm mt-1">No spam. We promise</p>
-        </form>
-      </div>
-    </div>
-    {/* ens subscribe section */}
-    {/* popular posts */}
-    <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
-      <h2 className="font-bold text-3xl">Popular news</h2>
-      <a className="bg-gray-200 hover:bg-green-200 text-gray-800 px-3 py-1 rounded cursor-pointer">
-        View all
-      </a>
-    </div>
-    <div className="block space-x-0 lg:flex lg:space-x-6">
-      <div className="rounded w-full lg:w-1/2 lg:w-1/3 p-4 lg:p-0">
-        <img src="https://images.unsplash.com/photo-1526666923127-b2970f64b422?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60" className="rounded" alt="technology" />
-        <div className="p-4 pl-0">
-          <h2 className="font-bold text-2xl text-gray-800">Put all speaking her delicate recurred possible.</h2>
-          <p className="text-gray-700 mt-2">
-            Set indulgence inquietude discretion insensible bed why announcing. Middleton fat two satisfied additions.
-            So continued he or commanded household smallness delivered. Door poor on do walk in half. Roof his head the what.
-          </p>
-          <a href="#" className="inline-block py-2 rounded text-green-900 mt-2 ml-auto"> Read more </a>
+  return (
+   <div className="blogoverviewpage_BlogOverviewPage_1mf6e">
+  <div className="blogoverviewpage_Body_fWoUo">
+    <Header />
+<div className="blogoverviewpage_LargeEntry_2E3rt">
+  <div className="blogoverviewpage_HeadingImage_2e1Tr" style={{backgroundImage: 'url("undefined")'}} />
+  <div className="fade_FadeContainer_1JDI3 fade_Bottom_1NXAh">
+    <div className="fade_Fade_1keus" style={{background: 'linear-gradient(rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.733) 85%, rgb(0, 0, 0) 95%)'}} />
+  </div>
+  <div className="blogoverviewpage_BottomFade_2AvsW" />
+  <div className="blogoverviewpage_FeaturedContent_3x-xx">
+    <div className="blogoverviewpage_Tag_1JseK">Featured Post</div>
+    <div className="blogoverviewpage_Date_37cbM">June 2, 2023</div>
+    <div className="blogoverviewpage_Title_3QQKY">Dota Plus Update — Summer 2023</div>
+    <a className="blogoverviewpage_FeaturedLink_SffNe" href="https://www.dota2.com/newsentry/3718329360979838399">Read More<img src="./new_files/arrow_left.png" className="blogoverviewpage_ForwardArrow_343-b" /></a>
+  </div>
+</div>
+<div className="blogoverviewpage_TabContainer_3Abu7">
+  <div className="blogoverviewpage_TabsLeft_2hM8T">
+    <a className="blogoverviewpage_Tab_1ZGUM blogoverviewpage_Active_2QA0p" href="https://www.dota2.com/news">News</a><a className="blogoverviewpage_Tab_1ZGUM" href="https://www.dota2.com/news/updates">Updates</a>
+  </div>
+</div>
+<div className="blogoverviewpage_BottomSection_1rCwx">
+   {/* postlis */}
+  <div className="blogoverviewpage_SubEntries_3hyKA">
+    <a className="blogcapsule_BlogCapsule_3OBoG" href="https://www.dota2.com/newsentry/3718329360979838399"><div className="blogcapsule_Entry_2P4kN" style={{backgroundImage: 'url("https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/clans/3703047/811316b69855539f634a139f4f67c1c1b596bb98.png")'}}>
+        <div className="fade_FadeContainer_1JDI3 fade_Bottom_1NXAh">
+          <div className="fade_Fade_1keus"  />
         </div>
-      </div>
-      <div className="rounded w-full lg:w-1/2 lg:w-1/3 p-4 lg:p-0">
-        <img src="https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60" className="rounded" alt="technology" />
-        <div className="p-4 pl-0">
-          <h2 className="font-bold text-2xl text-gray-800">Is at purse tried jokes china ready decay an. </h2>
-          <p className="text-gray-700 mt-2">
-            Small its shy way had woody downs power. To denoting admitted speaking learning my exercise so in. 
-            Procured shutters mr it feelings. To or three offer house begin taken am at. 
-          </p>
-          <a href="#" className="inline-block py-2 rounded text-green-900 mt-2 ml-auto"> Read more </a>
+        <div className="blogcapsule_Desc_471NM">
+          As seasons go, spring doesn’t have much going for it. It’s wet, there’s too many insects, idiots
+          are all over the place skipping through parks and falling in love.
         </div>
-      </div>
-      <div className="rounded w-full lg:w-1/2 lg:w-1/3 p-4 lg:p-0">
-        <img src="https://images.unsplash.com/photo-1483058712412-4245e9b90334?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80" className="rounded" alt="technology" />
-        <div className="p-4 pl-0">
-          <h2 className="font-bold text-2xl text-gray-800">As dissuade cheerful overcame so of friendly he indulged unpacked.</h2>
-          <p className="text-gray-700 mt-2">
-            Alteration connection to so as collecting me. 
-            Difficult in delivered extensive at direction allowance. 
-            Alteration put use diminution can considered sentiments interested discretion.
-          </p>
-          <a href="#" className="inline-block py-2 rounded text-green-900 mt-2 ml-auto"> Read more </a>
-        </div>
-      </div>
-    </div>
-    {/* end popular posts */}
-  </main>
-  {/* main ends here */}
-  {/* footer */}
+        
+        <div className="blogcapsule_Title_39UGs">Dota Plus Update — Summer 2023</div>
+        <div className="blogcapsule_Date_3kp_O">June 2, 2023</div>
+      </div></a>
+      <PostList />
+      <Related />
+  </div>
+  {/* end postlis */}
 
 </div>
-  <Footer />
-        
-      </div>
-      </div>
-      
-    )
-  }
-  
+  </div>
+</div>
+
+  )
+}

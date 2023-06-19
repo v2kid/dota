@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from 'store'
 import { Post } from 'types/blog.type'
 import { isEntityError, isFetchBaseQueryError } from 'utils/helpers'
+import { toast } from 'react-toastify'
 
 const initialState: Omit<Post, '_id'> = {
   description: '',
@@ -29,7 +30,7 @@ export default function CreatePost() {
   const [addPost, addPostResult] = useAddPostMutation()
   const postId = useSelector((state: RootState) => state.blog.postId)
   const { data, refetch } = useGetPostQuery(postId, {
-    skip: !postId,
+    skip: !postId
   })
   const [updatePost, updatePostResult] = useUpdatePostMutation()
 
@@ -67,12 +68,15 @@ export default function CreatePost() {
           body: formData as Post,
           id: postId
         }).unwrap()
+        toast.success('edited')
       } else {
         await addPost(formData).unwrap()
+        toast.success('add Post success')
       }
       setFormData(initialState)
     } catch (error) {
       console.log(error)
+      toast.error('failed')
     }
   }
 

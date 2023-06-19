@@ -27,10 +27,9 @@ export const loginuser = createApi({
     }),
     Gsignin: build.query({
       query: () => ({
-        url: `auth/google-redirect`,
+        url: `auth/google-redirect`
       })
-    }),
-
+    })
   })
 })
 interface UserState {
@@ -55,5 +54,5 @@ const usersSlice = createSlice({
   }
 })
 const usertokenReducer = usersSlice.reducer
-export const { useSignInMutation , useGsigninQuery} = loginuser
+export const { useSignInMutation, useGsigninQuery } = loginuser
 export default usertokenReducer
