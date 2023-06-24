@@ -24,7 +24,7 @@ export const heroApi = createApi({
       getheroes: build.query<Hero[], { keyword: string }>({
         query: (variables) => {
           const { keyword } = variables
-          return `heros`
+          return `heroes`
           // return `heroes?keyword=${keyword}`
         },
       }),
