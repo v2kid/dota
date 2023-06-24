@@ -10,7 +10,7 @@ export const heroApi = createApi({
   tagTypes: [''], // Những kiểu tag cho phép dùng trong blogApi
   keepUnusedDataFor: 10, // Giữ data trong 10s sẽ xóa (mặc định 60s)
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3001/',
+    baseUrl: 'https://jsonserver-zeta.vercel.app/',
    
   }),
 
@@ -23,7 +23,8 @@ export const heroApi = createApi({
       getheroes: build.query<Hero[], { keyword: string }>({
         query: (variables) => {
           const { keyword } = variables
-          return `heroes?keyword=${keyword}`
+          return `heros`
+          // return `heroes?keyword=${keyword}`
         },
       }),
       getheroability: build.query<Attributes, any>({

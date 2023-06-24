@@ -11,7 +11,7 @@ export default function Home() {
       <HomepageSection />
       <HomepageChoose />
       <div
-        className='homepage_ProCircuitSection_3oDuN'
+        className='homepage_ProCircuitSection_3oDuN '
         style={{
           backgroundImage: 'url("https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//home/dpc.jpg")'
         }}
