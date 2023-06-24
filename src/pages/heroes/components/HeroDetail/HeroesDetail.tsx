@@ -85,7 +85,7 @@ export default function HeroDetail() {
           <div className='heropage_HeroName_2IcIu'>Dazzle</div>
           <div className='heropage_HeroOneLiner_2r7td'>Powerful healer who can briefly prevent death</div>
           <div className='heropage_BioOrSummaryContainer_3NVqF'>
-            {showComponentOne ? (
+            {showComponentOne ?  (
               <HeroSumary toggleComponent={toggleComponent} story={data?.ability[0].describle} complex={data?.complexity}/>
             ) : (
               <ReadMore toggleComponent={toggleComponent} />

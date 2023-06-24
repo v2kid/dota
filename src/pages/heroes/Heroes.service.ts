@@ -11,13 +11,14 @@ export const heroApi = createApi({
   keepUnusedDataFor: 10, // Giữ data trong 10s sẽ xóa (mặc định 60s)
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://jsonserver-zeta.vercel.app/',
-   
+    // baseUrl: 'http://localhost:3001/',
+    
   }),
 
   endpoints: (build) => ({
     gettalent: build.query<Talent, any>({
         query: (id) => ({
-            url: `talent/?id=${id}`
+            url: `talent?id=50`
           })
       }),
       getheroes: build.query<Hero[], { keyword: string }>({
