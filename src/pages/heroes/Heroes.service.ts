@@ -30,7 +30,7 @@ export const heroApi = createApi({
       getheroability: build.query<Attributes, any>({
         query: (id) => ({
             // url: `Heroes/ability?id=${id}`
-            url: `ability?id=${id}`
+            url: `abilities?id=${id}`
           })
       }),
   })
