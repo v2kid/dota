@@ -111,6 +111,3 @@ export default function Detailpost() {
   )
 }
 
-function dispatch(closedetail: ActionCreatorWithPayload<string, string>) {
-  throw new Error('Function not implemented.')
-}

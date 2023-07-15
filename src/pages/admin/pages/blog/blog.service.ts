@@ -7,7 +7,7 @@ export const blogApi = createApi({
   tagTypes: ['Posts'], // Những kiểu tag cho phép dùng trong blogApi
   keepUnusedDataFor: 10, // Giữ data trong 10s sẽ xóa (mặc định 60s)
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3001/',
+    baseUrl: 'https://jsonserver-zeta.vercel.app/',
     prepareHeaders(headers) {
       const token = localStorage.getItem('token')
       headers.set('authorization', `Bearer ${token}`)
@@ -20,8 +20,8 @@ export const blogApi = createApi({
       query: (variables) => {
         const { keyword } = variables
         const { page } = variables
-
-        return `blog/posts?page=${page}&per_page=6&keyword=${keyword}`
+        return `posts`
+        // return `blog/posts?page=${page}&per_page=6&keyword=${keyword}`
       },
       providesTags(result, error, variables) {
         const page = typeof variables === 'number' ? variables : 1

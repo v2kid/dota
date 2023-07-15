@@ -5,8 +5,15 @@ import Footer from 'pages/components/Footer'
 // import '../components/style.css'
 import HomepageSection from 'pages/components/HomepageSection'
 import Related from './components/Related/Related'
+import PostItem from './components/PostItem'
+import { useGetPostsQuery } from 'pages/admin/pages/blog/blog.service'
+import { useState } from 'react'
+import { Post } from 'types/blog.type'
 
 export default function Blogshow() {
+  const [keyword, setkeyword] = useState('')
+  const [page, setPage] = useState(1)
+  const { data, isLoading, isFetching } = useGetPostsQuery({ keyword, page })
   return (
    <div className="blogoverviewpage_BlogOverviewPage_1mf6e">
   <div className="blogoverviewpage_Body_fWoUo">
@@ -44,14 +51,47 @@ export default function Blogshow() {
         <div className="blogcapsule_Title_39UGs">Dota Plus Update — Summer 2023</div>
         <div className="blogcapsule_Date_3kp_O">June 2, 2023</div>
       </div></a>
-      <PostList />
-      <Related />
-  </div>
-  {/* end postlis */}
+      <a className="blogcapsule_BlogCapsule_3OBoG" href="https://www.dota2.com/newsentry/3718329360979838399"><div className="blogcapsule_Entry_2P4kN" style={{backgroundImage: 'url("https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/clans/3703047/811316b69855539f634a139f4f67c1c1b596bb98.png")'}}>
+        <div className="fade_FadeContainer_1JDI3 fade_Bottom_1NXAh">
+          <div className="fade_Fade_1keus"  />
+        </div>
+        <div className="blogcapsule_Desc_471NM">
+          As seasons go, spring doesn’t have much going for it. It’s wet, there’s too many insects, idiots
+          are all over the place skipping through parks and falling in love.
+        </div>
+        
+        <div className="blogcapsule_Title_39UGs">Dota Plus Update — Summer 2023</div>
+        <div className="blogcapsule_Date_3kp_O">June 2, 2023</div>
+      </div></a>
+      <a className="blogcapsule_BlogCapsule_3OBoG" href="https://www.dota2.com/newsentry/3718329360979838399"><div className="blogcapsule_Entry_2P4kN" style={{backgroundImage: 'url("https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/clans/3703047/811316b69855539f634a139f4f67c1c1b596bb98.png")'}}>
+        <div className="fade_FadeContainer_1JDI3 fade_Bottom_1NXAh">
+          <div className="fade_Fade_1keus"  />
+        </div>
+        <div className="blogcapsule_Desc_471NM">
+          As seasons go, spring doesn’t have much going for it. It’s wet, there’s too many insects, idiots
+          are all over the place skipping through parks and falling in love.
+        </div>
+        
+        <div className="blogcapsule_Title_39UGs">Dota Plus Update — Summer 2023</div>
+        <div className="blogcapsule_Date_3kp_O">June 2, 2023</div>
+      </div></a>
+      {isFetching && (
+                 <h1>a</h1>
+              )}
+               {!isFetching &&
+                 data?.map((post: Post) => (
+                   <PostItem key={post._id} post={post} />
+               ))}
+              <div className='inline-flex'>
+              </div>
+             <div className="blogoverviewpage_Pages_BieN0">
 
 </div>
   </div>
 </div>
+  </div>
+</div>
+ 
 
   )
 }

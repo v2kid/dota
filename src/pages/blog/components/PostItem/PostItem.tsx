@@ -6,14 +6,14 @@ import { Post } from 'types/blog.type'
 
 interface PostItemProps {
   post: Post
-  detailPost: (id: string) => void
-  handleDeletePost: (id: string) => void
+  // detailPost: (id: string) => void
+  // handleDeletePost: (id: string) => void
 }
 
 export default function PostItem(props: PostItemProps) {
-  const { post, detailPost } = props
+  const { post } = props
   const postId = useSelector((state: RootState) => state.blog.postId)
-  const { data, refetch } = useGetPostQuery(postId, {
+  const { data, refetch,isFetching } = useGetPostQuery(postId, {
     skip: !postId
   })
   
@@ -35,8 +35,9 @@ export default function PostItem(props: PostItemProps) {
           As seasons go, spring doesn’t have much going for it. It’s wet, there’s too many insects, idiots
           are all over the place skipping through parks and falling in love.
         </div>
-        <div className="blogcapsule_Title_39UGs">{post.title}</div>
+        <div className="blogcapsule_Title_39UGs">{data?.title}</div>
         <div className="blogcapsule_Date_3kp_O">J{post.publishDate}</div>
       </div></a>
+      
   )
 }

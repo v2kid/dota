@@ -112,7 +112,6 @@ export default function PostList() {
     //   </div>
     // </section>
     <div className="blogoverviewpage_BottomSection_1rCwx ">
-   {/* postlis */}
   <div className="blogentrypage_LatestNewsContainer_3_5ne mt-6 grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-1 lg:grid-cols-3">
     
   {isFetching && (
@@ -123,7 +122,7 @@ export default function PostList() {
               )}
                {!isFetching &&
                  data?.map((post: Post) => (
-                   <PostItem key={post._id} post={post} detailPost={detailPost} handleDeletePost={handleDeletePost} />
+                   <PostItem key={post._id} post={post} />
                ))}
               <div className='inline-flex'>
               </div>
